@@ -49,7 +49,7 @@ for job in job_list[:5]:
     print(f"Clicking listing {listing}....")
     link.click()
     print(f"Trying to save listing {listing}...")
-    full_listing = driver.find_element(By.CSS_SELECTOR, value="")
+    full_listing = driver.find_element(By.CLASS_NAME, value="jobs-save-button")
     # title = full_listing
     # save = full_listing.find_element(By.CLASS_NAME, value="jobs-save-button")
     full_listing.click()
