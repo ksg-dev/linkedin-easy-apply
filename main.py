@@ -22,13 +22,52 @@ signin = driver.find_element(By.XPATH, value='/html/body/div[1]/header/nav/div/a
 signin.click()
 
 # Key Elements - login
-time.sleep(5)
+time.sleep(1)
 email_txt = driver.find_element(By.ID, value="username")
 email_txt.send_keys(LINK_EMAIL)
 
 pw_txt = driver.find_element(By.ID, value="password")
 pw_txt.send_keys(LINK_PW)
 pw_txt.send_keys(Keys.ENTER)
+
+
+# List of jobs on left
+list_container = driver.find_element(By.CLASS_NAME, value="scaffold-layout__list-container")
+# print(list_container.text)
+job_list = list_container.find_elements(By.CLASS_NAME, value="job-card-list")
+
+# Minimize messaging
+msg_overlay = driver.find_element(By.XPATH, value='//*[@id="ember43"]')
+msg_overlay.get_attribute("use")
+msg_overlay.click()
+
+
+listing = 1
+for job in job_list[:5]:
+    link = job.find_element(By.CSS_SELECTOR, value="div a")
+    # title = link.get_attribute("aria-label")
+    print(f"Clicking listing {listing}....")
+    link.click()
+    print(f"Trying to save listing {listing}...")
+    full_listing = driver.find_element(By.CSS_SELECTOR, value="")
+    # title = full_listing
+    # save = full_listing.find_element(By.CLASS_NAME, value="jobs-save-button")
+    full_listing.click()
+    print(full_listing.text)
+    listing += 1
+
+
+
+# for job in job_list[:11]:
+#     job.click()
+#     full_listing = driver.find_element(By.CLASS_NAME, value="mt5")
+#     save_button = full_listing.get_attribute("jobs-save-button")
+#     print(save_button)
+
+# for listing in list_container:
+#     job = listing.find_element(By.CLASS_NAME, value="job-card-container")
+
+
 
 
 # driver.quit()
